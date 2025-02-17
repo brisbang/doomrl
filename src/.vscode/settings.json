@@ -1,0 +1,14 @@
+{
+//    "debugPath": ".build/debug",
+//    "releasePath": ".build/release",
+    "debugPath": "bin",
+    "releasePath": "bin",
+    "instantFpcPath": "E:\\lazarus\\fpc\\3.2.2\\bin\\x86_64-win64\\instantfpc.exe",
+    "fpcPath": "E:\\lazarus\\fpc\\3.2.2\\bin\\x86_64-win64\\fpc.exe",
+    "drlSourcePath": "e:\\bitbucket\\DoomRL",
+    "valkyrieSourcePath": "e:\\bitbucket\\fpcvalkyrie",
+    "lazarusPath": "E:\\lazarus",
+    "projectMainFile": "drl.pas",
+    "projectBase": "drl.exe",
+    "tmpPath": ".build"
+}
