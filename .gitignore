@@ -28,3 +28,4 @@ bin/*.exe
 bin/user/*
 bin/settings.lua
 *.log
+.build/
