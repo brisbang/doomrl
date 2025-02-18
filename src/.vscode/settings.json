@@ -5,10 +5,13 @@
     "releasePath": "bin",
     "instantFpcPath": "E:\\lazarus\\fpc\\3.2.2\\bin\\x86_64-win64\\instantfpc.exe",
     "fpcPath": "E:\\lazarus\\fpc\\3.2.2\\bin\\x86_64-win64\\fpc.exe",
-    "drlSourcePath": "e:\\bitbucket\\DoomRL",
+    "drlBasePath": "e:\\bitbucket\\DoomRL",
     "valkyrieSourcePath": "e:\\bitbucket\\fpcvalkyrie",
     "lazarusPath": "E:\\lazarus",
-    "projectMainFile": "drl.pas",
-    "projectBase": "drl.exe",
-    "tmpPath": ".build"
+    "drlMainFile": "drl.pas",
+    "drlExe": "drl.exe",
+    "makewadMainFile": "makewad.pas",
+    "makewadExe": "makewad.exe",
+    "tmpPath": ".build",
+    "luaPath": "c:\\Program Files\\lua5.1\\lua5.1.exe"
 }

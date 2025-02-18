@@ -40,10 +40,10 @@ Longer instructions to set up a Windows debug environment:
   * SDL_mixer.dll (true source: https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.6.3)
   * SDL_image.dll (true source: https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.5)
   * fmod64.dll (true source: www.fmod.com/download)
-  * (if referencing v0.9.9.8 or less) mp3\* to data\drlhq\music
-  * (if referencing v0.9.9.8 or less) wavhq\* to data\drlhq\sounds
-  * (if referencing v0.9.9.9 or higher) data\drlhq\music\* to data\drlhq\music
-  * (if referencing v0.9.9.9 or higher) data\drlhq\sounds\* to data\drlhq\sounds
+  * (if referencing v0.9.9.8 or less) mp3\\* to data\drlhq\music
+  * (if referencing v0.9.9.8 or less) wavhq\\* to data\drlhq\sounds
+  * (if referencing v0.9.9.9 or higher) data\drlhq\music\\* to data\drlhq\music
+  * (if referencing v0.9.9.9 or higher) data\drlhq\sounds\\* to data\drlhq\sounds
 4. Download fpcvalkyrie (to a folder at the same level as the DRL source) from https://github.com/ChaosForge/fpcvalkyrie/.
 5. Ensure doomrl and fpcvalkyrie are on the same release branch (e.g. master or development)
 6. Download lua 5.1 (e.g. 5.1.5) from https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools%20Executables/. Unzip it.
@@ -71,14 +71,17 @@ Using Visual Studio Code (2) [Instructions appropriated from https://stephan-bes
 * Free Pascal Source Path: %Lazarus location%\fpc\3.2.2\bin\x86_64-win64
 * Lazbuild path: %Lazarus location%
 12. In VSCode Explorer, open the DRL folder
-13. In the status bar you'll see OmniPascal: Select project. Click and choose drl.lpi
-14. Install the Native Debug extension
-15. Run Terminal/Configure Tasks/Create tasks.json from Template (prob not required)
-16. Download content from https://gist.github.com/stepbester/96e6310e7e94cd7c64b54f9efa38489f
-17. Run Terminal/Run Task... and choose fpc: Create Build Folders
-18. Run Run/Add Configuration... then choose GDB from the list
-19. Change target to point to "./build/debug/drl"
+13. Install the Native Debug extension
+14. In the status bar you'll see OmniPascal: Select project. Click and choose drl.lpi
+15. Open .vscode/settings.json and update the folders
 
+Next steps:
+* 
+* Confirm that you can debug DRL still. YES. Set a breakpoint and F5. It will run launch.json.
+* Confirm that the release build works
+* Can you build makewad?
+* Confirm that you can set it all up from scratch using the instructions
+* Separate out the assets somewhere?
 
 Notes on Lua5.1 (from epyon)
 v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers are written against 5.1. I don't even think it will work due to the changes in env-tables. DRL uses a few sophisticated Lua tricks. Initially the reason to keep being 5.1 compatible for both DRL and JH was due to LuaJIT compatibility, but I guess that point is moot now.

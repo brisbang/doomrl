@@ -37,11 +37,10 @@
                 "-vm4056", //Suppress message 4056
                 "-vm4055", //Suppress message 4055
                 "-vm3250", //Suppress message 3250
-                "-Fi${config:drlSourcePath}\\bin", //Include file search path
-                "-Fi${config:drlSourcePath}\\lua", //Include file search path
+                "-Fi${config:drlBasePath}\\bin", //Include file search path
+                "-Fi${config:drlBasePath}\\lua", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\libs", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
-                "-Fi${config:drlSourcePath}\\${config:tmpPath}", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
                 "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
                 "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
@@ -49,13 +48,13 @@
                 "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
                 "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
                 "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
-                "-Fu${config:drlSourcePath}\\src", //Include unit search path
-                "-FU${config:drlSourcePath}\\${config:tmpPath}", //Write units to this folder
+                "-Fu${config:drlBasePath}\\src", //Include unit search path
+                "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
 //                "-FE${config:debugPath}",  //This option writes units and executables to this location. However units is overriden by FU and executable is overriden by o so parameter is not required.
-                "-o${config:drlSourcePath}\\${config:debugPath}\\${config:projectBase}", //Executable location
+                "-o${config:drlBasePath}\\${config:debugPath}\\${config:drlExe}", //Executable location
                 "-dLCL", //Enables conditional compilation of this symbol
                 "-dLCLwin32", //Enables conditional compilation of this symbol
-                "${config:projectMainFile}" //The compilation file
+                "${config:drlMainFile}" //The compilation file
             ],
             "presentation": {
                 "focus": true
@@ -84,7 +83,7 @@
             "group": "build",
             "command": "${config:fpcPath}",
             "args": [
-                "${config:projectMainFile}", //The compilation file
+                "${config:drlMainFile}", //The compilation file
                 "-Px86_64", //Set target CPU to be x86_64
                 "-Mobjfpc", //Switch on some Delphi extensions
                 "-CX", //Only link referenced application components, excluding unused code
@@ -92,8 +91,8 @@
                 "-XXs", //Strip symbols from the executable
                 "-B", //Recompile all used units (make clean)
                 "-v", //Be verbose
-                "-FU${config:drlSourcePath}\\${config:tmpPath}", //Write units to this folder
-                "-FE${config:drlSourcePath}\\${config:releasePath}" //The target folder for the executable
+                "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
+                "-FE${config:drlBasePath}\\${config:releasePath}" //The target folder for the executable
             ],
             "presentation": {
                 "focus": true
@@ -122,15 +121,15 @@
             "group": "build",
             "command": "${config:fpcPath}",
             "args": [
-                "${config:projectMainFile}", //The compilation file
+                "${config:drlMainFile}", //The compilation file
                 "-Px86_64", //Set target CPU to be x86_64
                 "-Mobjfpc", //Switch on some Delphi extensions
                 "-Se99", //Stop on the 99th error
                 "-B", //Recompile all used units (make clean)
                 "-v", //Be verbose
                 "-s", //Do not call the assembler and linker
-                "-o${config:drlSourcePath}\\${config:debugPath}\\${config:projectBase}", //Executable location
-                "-FU${config:drlSourcePath}\\${config:tmpPath}", //Write units to this folder
+                "-o${config:drlBasePath}\\${config:debugPath}\\${config:drlExe}", //Executable location
+                "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
             ],
             "presentation": {
                 "focus": true
@@ -159,7 +158,7 @@
             "group": "test",
             "command": "${config:instantFpcPath}",
             "args": [
-                "${config:projectMainFile}", //The compilation file
+                "${config:drlMainFile}", //The compilation file
                 "-B" //Full recompile
             ],
             "presentation": {
@@ -190,7 +189,7 @@
                 "kind": "test",
                 "isDefault": true
             },
-            "command": "${config:drlSourcePath}\\${config:debugPath}\\${config:projectBase}",
+            "command": "${config:drlBasePath}\\${config:debugPath}\\${config:drlExe}",
             "args": [],
             "presentation": {
                 "focus": true
@@ -204,7 +203,7 @@
             "args": [
                 "-ErrorAction",
                 "SilentlyContinue",
-                "${config:drlSourcePath}\\${config:tmpPath}"
+                "${config:drlBasePath}\\${config:tmpPath}"
             ],
             "presentation": {
                 "reveal": "silent"
@@ -215,10 +214,89 @@
             "label": "Unit test build scripts",
             "dependsOrder": "sequence",
             "dependsOn": [
+                 "Build makewad.exe (debug)",
+                 "Build drl.wad, core.wad",
+                 "Syntax Check (debug)",
                  "Build drl.exe (debug)",
-                 "Build drl.exe (release)",
-                 "Syntax Check (debug)"
+                 "Build drl.exe (release)"
             ]
-        }
+        },
+        //Open src/makewad.lpi (done)
+        //5. Run makewad.exe from the command line in the bin folder to generate drl.wad and core.wad (precompiled lua files)
+        //lua5.1 makefile.lua
+        //Open src/drl.lpi, (done)
+        //Does the build still include copyright?       <StringTable CompanyName="ChaosForge" FileDescription="D**m, the Roguelike" LegalCopyright="(c) 2002-2024 by Kornel Kisielewicz" ProductName="D**m, the Roguelike"/>
+        //Does the build include the version number?
+
+        {
+            "label": "Build makewad.exe (debug)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "${config:fpcPath}",
+            "args": [
+                "-Px86_64", //Set target CPU to be x86_64
+                "-Mobjfpc", //Switch on some Delphi extensions
+                "-Scgi", //Support C-style operators, label and goto commands, INLINE
+                "-Cirot", //Generate I/O checking code, Range checking code, Integer overflow checking code, Stack checking code
+                "-O1", //Level 1 optimizations (quick and debugger-friendly)
+                "-gw3", //Dwarf debugging info (version 3)
+                "-gl", //Lineinfo debugging
+                "-l", //Print a line stating which program this is and its version
+                "-vewnhibq", //Be verbose, showing errors, warnings, notes, hints, informational messages, all procedural declarations if an overload occurs, message numbers
+                "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
+                "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
+                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
+                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
+//                "-Fu${config:drlBasePath}\\src", //This can be removed - no units in this location
+                "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
+//                "-FE${config:debugPath}",  //This option writes units and executables to this location. However units is overriden by FU and executable is overriden by o so parameter is not required.
+                "-o${config:drlBasePath}\\${config:debugPath}\\${config:makewadExe}", //Executable location
+                "-dLCL", //Enables conditional compilation of this symbol
+                "-dLCLwin32", //Enables conditional compilation of this symbol
+                "${config:makewadMainFile}" //The compilation file
+            ],
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher": {
+                "owner": "objectpascal",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": {
+                    "kind": "location",
+                    "regexp": "^(.*)\\((\\d.*),(\\d.*)\\) (Warning|Error|Fatal): (.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5,
+                    "loop": true
+                }
+            }
+       },
+       {
+            "label": "Build drl.wad, core.wad",
+            "type": "shell",
+            "options": {
+                "cwd": "${config:drlBasePath}\\${config:debugPath}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "./${config:makewadExe}",
+            "presentation": {
+                "focus": true
+            },
+            "problemMatcher": []
+        }  
     ]
 }
