@@ -190,7 +190,7 @@
                 "kind": "test",
                 "isDefault": true
             },
-            "command": "${config:debugPath}\\${config:projectBase}",
+            "command": "${config:drlSourcePath}\\${config:debugPath}\\${config:projectBase}",
             "args": [],
             "presentation": {
                 "focus": true
