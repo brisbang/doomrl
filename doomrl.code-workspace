@@ -4,9 +4,6 @@
 			"path": "src"
 		},
 		{
-			"path": "bin\\lua"
-		},
-		{
 			"path": "..\\fpcvalkyrie\\src"
 		}
 	],

@@ -38,7 +38,6 @@
                 "-vm4055", //Suppress message 4055
                 "-vm3250", //Suppress message 3250
                 "-Fi${config:drlBasePath}\\bin", //Include file search path
-                "-Fi${config:drlBasePath}\\lua", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\libs", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
@@ -227,6 +226,7 @@
         //Open src/drl.lpi, (done)
         //Does the build still include copyright?       <StringTable CompanyName="ChaosForge" FileDescription="D**m, the Roguelike" LegalCopyright="(c) 2002-2024 by Kornel Kisielewicz" ProductName="D**m, the Roguelike"/>
         //Does the build include the version number?
+        //How does packaging work?
 
         {
             "label": "Build makewad.exe (debug)",
