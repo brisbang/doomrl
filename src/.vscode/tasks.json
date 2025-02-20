@@ -28,7 +28,7 @@
                 "isDefault": true
             },
             "command": "${config:fpcPath}",
-            "args": [
+            "args": [ //This command definition matches the Lazarus drl.lpi build execution
                 "-Px86_64", //Set target CPU to be x86_64
                 "-Mobjfpc", //Switch on some Delphi extensions
                 "-Scgi", //Support C-style operators, label and goto commands, INLINE
@@ -48,7 +48,7 @@
                 "-vm4056", //Suppress message 4056
                 "-vm4055", //Suppress message 4055
                 "-vm3250", //Suppress message 3250
-                "-Fi${config:drlBasePath}\\bin", //Include file search path
+                "-Fi${config:drlBasePath}\\${config:drlDebugPath}", //Include file search path. Might not be necessary?
                 "-Fi${config:valkyrieSourcePath}\\libs", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
@@ -226,7 +226,7 @@
                 "kind": "build",
             },
             "command": "${config:fpcPath}",
-            "args": [
+            "args": [ //This command definition matches the Lazarus makewad.lpi build execution
                 "-Px86_64", //Set target CPU to be x86_64
                 "-Mobjfpc", //Switch on some Delphi extensions
                 "-Scgi", //Support C-style operators, label and goto commands, INLINE
