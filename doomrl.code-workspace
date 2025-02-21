@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "src"
+			"path": "src",
+			"name": "drl"
 		},
 		{
-			"path": "..\\fpcvalkyrie\\src"
+			"path": "..\\fpcvalkyrie\\src",
+			"name": "fpcValkyrie"
 		}
 	],
 	"settings": {}
