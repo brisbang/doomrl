@@ -44,7 +44,7 @@ There are two IDEs available: Visual Studio Code and Lazarus. You should only ne
 8. Download and install Lazarus 64-bit (the location will be referred to as %lazarus%)
 9. Add %lazarus%\\fpc\\3.2.2\\bin\\x86_64-win64 to your path (to support the release package build)
 
-#### Notes on Lua5.1 (from @epyon)
+#### Lua5.1 notes
 v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers are written against 5.1. I don't even think it will work due to the changes in env-tables. DRL uses a few sophisticated Lua tricks. Initially the reason to keep being 5.1 compatible for both DRL and JH was due to LuaJIT compatibility, but I guess that point is moot now.
 
 ### Visual Studio Code IDE
@@ -63,8 +63,6 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 8. Open Under drl, open .vscode/settings.json and update the folders to your locations
 9. In the status bar you'll see "OmniPascal: Select project". Click and choose drl.lpi (appears to improve the linking experience, although you'll need to do this each time you load the workspace)
 
-*Replacing the above Lazarus installs with fpc installs was not successful when it came to debugging.*
-
 #### Build
 1. Terminal/Run Task/Build makewad.exe (debug)
 2. Terminal/Run Task/Build drl.wad, core.wad
@@ -72,6 +70,9 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 4. To debug, Run/Start Debugging. For example, open drl.pas, press F9 at the first line of code, and then start debugging.
 5. Terminal/Run Task/Build the release package (all). This won't work on a windows machine without some adjustments to the build script.
 You can test all these steps with Terminal/Run Task/Unit test build scripts (noting the release build step may fail).
+
+#### Lazarus notes
+Replacing the Lazarus installs with fpc installs would trigger an error when it came to running the debugger.
 
 ### The Lazarus IDE
 #### Configuration
@@ -84,9 +85,6 @@ Nothing further to do!
 4. Open up the Run\Run Parameters screen. Correct the working directory to point to your bin folder. Also note the Command Line Parameters, which might change the application's behaviour
 5. Run
 6. To build the packages, open a command prompt at the drl root folder and run "lua5.1 makefile.lua all". There are also options for lq and hq if you want to change the asset quality.
-
-Improvement notes
-* Lazarus may not be needed (in favour of just fpc from https://www.freepascal.org/download.html)
 
 ## Author's notes
 All code is (C) 2003-2024 Kornel Kisielewicz
