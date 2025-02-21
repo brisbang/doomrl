@@ -94,7 +94,7 @@ Code is distributed under the GPL 2.0 license (see LICENSE file in this folder)
 
 Original art and sprites (0.9.9.7) by Derek Yu, (C) 2003-2024, licensed under CC BY-SA 4.0. Modified version and additions (0.9.9.8+) by Łukasz Śliwiński, (C) 2024, licensed under CC BY-SA 4.0.
 
-All art is distributed under the CC-BY-SA 4.0 license (see LICENSE file in the bin/graphics/ folder).
+All art is distributed under the CC-BY-SA 4.0 license (see LICENSE file in bin/data/drl/graphics).
 
 sincerely,
 Kornel Kisielewicz 
