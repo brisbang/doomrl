@@ -60,10 +60,11 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 * Default Development Environment: FreePascal
 * Free Pascal Source Path: %lazarus%\fpc\3.2.2
 * Lazbuild path: %lazarus%
-8. Open Under drl, open .vscode/settings.json and update the folders to your locations
+8. In the 'drl' (source) folder, open .vscode/settings.json and update the folders to your locations
 9. In the status bar you'll see "OmniPascal: Select project". Click and choose drl.lpi (appears to improve the linking experience, although you'll need to do this each time you load the workspace)
 
 #### Build
+0. Open drl.code-workspace
 1. Terminal/Run Task/Build makewad.exe (debug)
 2. Terminal/Run Task/Build drl.wad, core.wad
 3. Terminal/Run Task/Build drl.exe (debug)
