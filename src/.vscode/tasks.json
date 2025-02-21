@@ -17,7 +17,7 @@
                  "Syntax Check (debug)",
                  "Build drl.exe (debug)",
                  "Build drl.exe (release)",
-                 "Build the release package"
+                 "Build the release package (all)"
             ]
         },
         {
@@ -48,7 +48,7 @@
                 "-vm4056", //Suppress message 4056
                 "-vm4055", //Suppress message 4055
                 "-vm3250", //Suppress message 3250
-                "-Fi${config:drlBasePath}\\${config:drlDebugPath}", //Include file search path. Might not be necessary?
+                "-Fi${config:drlBasePath}\\${config:debugPath}", //Include file search path. Might not be necessary?
                 "-Fi${config:valkyrieSourcePath}\\libs", //Include file search path
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
@@ -138,6 +138,17 @@
                 "-B", //Recompile all used units (make clean)
                 "-v", //Be verbose
                 "-s", //Do not call the assembler and linker
+                "-Fi${config:drlBasePath}\\${config:debugPath}", //Include file search path. Might not be necessary?
+                "-Fi${config:valkyrieSourcePath}\\libs", //Include file search path
+                "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
+                "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
+                "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
+                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
+                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
+                "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
+                "-Fu${config:drlBasePath}\\src", //Include unit search path
                 "-o${config:drlBasePath}\\${config:debugPath}\\${config:drlExe}", //Executable location
                 "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
             ],

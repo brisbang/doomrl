@@ -30,7 +30,7 @@ bin/settings.lua
 *.log
 .build/
 src/drl.prc
-src/drl.res
 src/drl.lps
 bin/*bat
 bin/*res
+doomrl.iss

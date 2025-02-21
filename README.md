@@ -3,6 +3,7 @@
 DRL a.k.a. doomrl, a.k.a, D**m, the Roguelike, version 0.9.9.8
 http://drl.chaosforge.org/
 
+## Foreword
 This release is dedicated to Jupiter Hell Classic, the newly announced commercial remake/expansion to DRL:
 
 https://store.steampowered.com/app/3126530/Jupiter_Hell_Classic/
@@ -13,26 +14,18 @@ https://store.steampowered.com/app/811320/Jupiter_Hell/
 
 Parts of this codebase date back to 2002, please do not judge! :P
 
+## Source
+
 This FreePascal source code release is provided as is. You can try compiling it using the latest version of Lazarus ( http://www.lazarus-ide.org/ ). You will also need the FPC Valkyrie library ( https://github.com/ChaosForge/fpcvalkyrie/ ), version 0.9.0. You will also probably need the binary files of the full game downloadable from http://drl.chaosforge.org/ (in particular the sound, soundhq, music and mp3 folder contents, and the premade drl.wad and core.wad if you don't want to create it yourself).
 
-Compilation instructions, short version:
+There are two IDEs available: Visual Studio Code and Lazarus. You should only need one of them.
 
-1. Download DRL from http://drl.chaosforge.org/
-2. Copy bin/mp3, bin/music, bin/sound, bin/soundhq from the DRL folders to the source tree bin folder
-3. Download 64-bit Lazarus
-4. Open src/makewad.lpi build, do not run
-5. Run makewad.exe from the command line in the bin folder to generate drl.wad and core.wad (precompiled lua files)
-6. Open src/drl.lpi, build and run
-7. Enjoy
+### Components
+1. Fpcvalkyrie: is the low level engine that manages the core functions of the game world
+2. Makewad.exe assembles the wad files, which contain the digital assets (sounds) and rules (lua)
+3. drl.exe is the drl-specific game engine, which references the wads (drl.wad and core.wad)
 
-Lua makefile path (tested on Windows, might work on Linux):
-
-1. Have lua 5.1 in your path
-2. Have fpc bin directory in your path
-3. From the root folder run lua5.1 makefile.lua
-4. You can build packages by running "lua5.1 makefile.lua all" or lq or hq
-
-Longer instructions to set up a Windows debug environment:
+### Setting up the source folders:
 1. Download DRL source from http://drl.chaosforge.org/
 2. Download the DRL binaries (if you haven't already)
 3. Copy the following DLLs from the DRL binaries into bin:
@@ -40,52 +33,60 @@ Longer instructions to set up a Windows debug environment:
   * SDL_mixer.dll (true source: https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.6.3)
   * SDL_image.dll (true source: https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.5)
   * fmod64.dll (true source: www.fmod.com/download)
-  * (if referencing v0.9.9.8 or less) mp3\\* to data\drlhq\music
-  * (if referencing v0.9.9.8 or less) wavhq\\* to data\drlhq\sounds
-  * (if referencing v0.9.9.9 or higher) data\drlhq\music\\* to data\drlhq\music
-  * (if referencing v0.9.9.9 or higher) data\drlhq\sounds\\* to data\drlhq\sounds
-4. Download fpcvalkyrie (to a folder at the same level as the DRL source) from https://github.com/ChaosForge/fpcvalkyrie/.
+  * (if referencing v0.9.9.8 or less) mp3\\* to (bin\\)data\\drlhq\\music
+  * (if referencing v0.9.9.8 or less) wavhq\\* to (bin\\)data\\drlhq\\sounds
+  * (if referencing v0.9.9.9 or higher) data\\drlhq\music\\* to (bin\\)data\\drlhq\\music
+  * (if referencing v0.9.9.9 or higher) data\\drlhq\sounds\\* to (bin\\)data\\drlhq\\sounds
+4. Download fpcvalkyrie from https://github.com/ChaosForge/fpcvalkyrie/ to a folder at the same level as the DRL source
 5. Ensure doomrl and fpcvalkyrie are on the same release branch (e.g. master or development)
-6. Download lua 5.1 (e.g. 5.1.5) from https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools%20Executables/. Unzip it.
-7. Update system environment variables to place lua5.1 in your path
-8. Download and install Lazarus 64-bit (the location will be referred to as %Lazarus location%)
+6. Download lua 5.1 (e.g. 5.1.5) from https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools%20Executables/. Unzip it
+7. Add lua5.1 in your path (the location will be referred to as %lua%)
+8. Download and install Lazarus 64-bit (the location will be referred to as %lazarus%)
+9. Add %lazarus%\\fpc\\3.2.2\\bin\\x86_64-win64 to your path (to support the release package build)
 
-Using Lazarus IDE
-9. Open src/makewad.lpi (with Lazarus). Build. You should receive '...bin\makewad.exe: Success'
-10. Start a command prompt and change to the bin folder. Run makewad.exe to generate the drl.wad and core.wad (precompiled lua files)
-11. Open src/drl.lpi. Build. You should receive '...bin\drl.exe: Success'
-12. Open up the Run\Run Parameters screen. Correct the working directory to point to your bin folder. Also note the Command Line Parameters, which might change the application's behaviour
-13. Run
-
-Using Visual Studio Code (1):
-9. Open Visual Studio Code
-10. Install FreePascal Toolkit
-11. Add %Lazarus%\fpc\3.2.2\bin\x86_64-win64 to your path
-
-Using Visual Studio Code (2) [Instructions appropriated from https://stephan-bester.medium.com/free-pascal-in-visual-studio-code-e1e0a240a430]
-9. Open Visual Studio Code
-9b. Add E:\lazarus\mingw\x86_64-win64\bin to your path
-10. Install the OmniPascal extension
-11. Manage (the cog)/Settings/User/Extensions/OmniPascal configuration
-* Default Development Environment: FreePascal
-* Free Pascal Source Path: %Lazarus location%\fpc\3.2.2\bin\x86_64-win64
-* Lazbuild path: %Lazarus location%
-12. In VSCode Explorer, open the DRL folder
-13. Install the Native Debug extension
-14. In the status bar you'll see OmniPascal: Select project. Click and choose drl.lpi
-15. Open .vscode/settings.json and update the folders
-
-Next steps:
-* 
-* Confirm that you can debug DRL still. YES. Set a breakpoint and F5. It will run launch.json.
-* Confirm that the release build works
-* Can you build makewad?
-* Confirm that you can set it all up from scratch using the instructions
-* Separate out the assets somewhere?
-
-Notes on Lua5.1 (from epyon)
+#### Notes on Lua5.1 (from @epyon)
 v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers are written against 5.1. I don't even think it will work due to the changes in env-tables. DRL uses a few sophisticated Lua tricks. Initially the reason to keep being 5.1 compatible for both DRL and JH was due to LuaJIT compatibility, but I guess that point is moot now.
 
+### Visual Studio Code IDE
+#### Configuration
+[Instructions appropriated from https://stephan-bester.medium.com/free-pascal-in-visual-studio-code-e1e0a240a430]
+1. Add %lazarus%\\mingw\\x86_64-win64\\bin to your path (required for gdb, integrated via the Native Debug extension)
+2. Install Visual Studio Code
+3. Open drl.code-workspace
+4. Install the lua extension (by sumneko)
+5. Install the OmniPascal - Open Preview (by Wosi)
+6. Install the Native Debug extension (from WebFreak)
+7. Manage (the cog)/Settings/User/Extensions/OmniPascal configuration
+* Default Development Environment: FreePascal
+* Free Pascal Source Path: %lazarus%\fpc\3.2.2\bin\x86_64-win64
+* Lazbuild path: %lazarus%
+8. Open Under drl, open .vscode/settings.json and update the folders to your locations
+9. In the status bar you'll see "OmniPascal: Select project". Click and choose drl.lpi (appears to improve the linking experience, although you'll need to do this each time you load the workspace)
+
+#### Build
+1. Terminal/Run Task/Build makewad.exe (debug)
+2. Terminal/Run Task/Build drl.wad, core.wad
+3. Terminal/Run Task/Build drl.exe (debug)
+4. To debug, Run/Start Debugging. For example, open drl.pas, press F9 at the first line of code, and then start debugging.
+5. Terminal/Run Task/Build the release package (all). This won't work on a windows machine without some adjustments to the build script.
+You can test all these steps with Terminal/Run Task/Unit test build scripts (noting the release build step may fail).
+
+### The Lazarus IDE
+#### Configuration
+Nothing further to do!
+
+#### Build
+1. Open src/makewad.lpi (with Lazarus). Build. You should receive '...bin\makewad.exe: Success'
+2. Start a command prompt and change to the bin folder. Run makewad.exe
+3. Open src/drl.lpi. Build. You should receive '...bin\drl.exe: Success'
+4. Open up the Run\Run Parameters screen. Correct the working directory to point to your bin folder. Also note the Command Line Parameters, which might change the application's behaviour
+5. Run
+6. To build the packages, open a command prompt at the drl root folder and run "lua5.1 makefile.lua all". There are also options for lq and hq if you want to change the asset quality.
+
+Improvement notes
+* Lazarus may not be needed (in favour of just fpc from https://www.freepascal.org/download.html)
+
+## Author's notes
 All code is (C) 2003-2024 Kornel Kisielewicz
 
 Code is distributed under the GPL 2.0 license (see LICENSE file in this folder)
