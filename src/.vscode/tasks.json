@@ -53,11 +53,6 @@
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
                 "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
                 "-Fu${config:drlBasePath}\\src", //Include unit search path
                 "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
 //                "-FE${config:debugPath}",  //This option writes units and executables to this location. However units is overriden by FU and executable is overriden by o so parameter is not required.
@@ -143,11 +138,6 @@
                 "-Fi${config:valkyrieSourcePath}\\src", //Include file search path
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
                 "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
                 "-Fu${config:drlBasePath}\\src", //Include unit search path
                 "-o${config:drlBasePath}\\${config:debugPath}\\${config:drlExe}", //Executable location
                 "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
@@ -249,11 +239,6 @@
                 "-vewnhibq", //Be verbose, showing errors, warnings, notes, hints, informational messages, all procedural declarations if an overload occurs, message numbers
                 "-Fu${config:valkyrieSourcePath}\\libs", //Include unit search path
                 "-Fu${config:valkyrieSourcePath}\\src", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64\\win32", //Include unit search path
-                "-Fu${config:lazarusPath}\\lcl\\units\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\freetype\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\components\\lazutils\\lib\\x86_64-win64", //Include unit search path
-                "-Fu${config:lazarusPath}\\packager\\units\\x86_64-win64", //Include unit search path
                 "-FU${config:drlBasePath}\\${config:tmpPath}", //Write units to this folder
                 "-o${config:drlBasePath}\\${config:debugPath}\\${config:makewadExe}", //Executable location
                 "-dLCL", //Enables conditional compilation of this symbol

@@ -41,8 +41,6 @@ There are two IDEs available: Visual Studio Code and Lazarus. You should only ne
 5. Ensure doomrl and fpcvalkyrie are on the same release branch (e.g. master or development)
 6. Download lua 5.1 (e.g. 5.1.5) from https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools%20Executables/. Unzip it
 7. Add lua5.1 in your path (the location will be referred to as %lua%)
-8. Download and install Lazarus 64-bit (the location will be referred to as %lazarus%)
-9. Add %lazarus%\\fpc\\3.2.2\\bin\\x86_64-win64 to your path (to support the release package build)
 
 #### Notes on Lua5.1 (from @epyon)
 v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers are written against 5.1. I don't even think it will work due to the changes in env-tables. DRL uses a few sophisticated Lua tricks. Initially the reason to keep being 5.1 compatible for both DRL and JH was due to LuaJIT compatibility, but I guess that point is moot now.
@@ -50,7 +48,7 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 ### Visual Studio Code IDE
 #### Configuration
 [Instructions appropriated from https://stephan-bester.medium.com/free-pascal-in-visual-studio-code-e1e0a240a430]
-1. Add %lazarus%\\mingw\\x86_64-win64\\bin to your path (required for gdb, integrated via the Native Debug extension)
+1. Install fpc (https://www.freepascal.org/down/x86_64/win64.html). The location will be referred to as %fpc%
 2. Install Visual Studio Code
 3. Open drl.code-workspace
 4. Install the lua extension (by sumneko)
@@ -58,8 +56,7 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 6. Install the Native Debug extension (from WebFreak)
 7. Manage (the cog)/Settings/User/Extensions/OmniPascal configuration
 * Default Development Environment: FreePascal
-* Free Pascal Source Path: %lazarus%\fpc\3.2.2\bin\x86_64-win64
-* Lazbuild path: %lazarus%
+* Free Pascal Source Path: %fpc%\bin\i386-win32
 8. Open Under drl, open .vscode/settings.json and update the folders to your locations
 9. In the status bar you'll see "OmniPascal: Select project". Click and choose drl.lpi (appears to improve the linking experience, although you'll need to do this each time you load the workspace)
 
@@ -73,6 +70,9 @@ You can test all these steps with Terminal/Run Task/Unit test build scripts (not
 
 ### The Lazarus IDE
 #### Configuration
+1. Download and install Lazarus 64-bit (the location will be referred to as %lazarus%)
+2. Add %lazarus%\\fpc\\3.2.2\\bin\\x86_64-win64 to your path (to support the release package build)
+
 Nothing further to do!
 
 #### Build
