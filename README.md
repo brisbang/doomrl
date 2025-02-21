@@ -73,7 +73,7 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 You can test all these steps with Terminal/Run Task/Unit test build scripts (noting the release build step may fail).
 
 #### Lazarus notes
-Replacing the Lazarus installs with fpc installs would trigger an error when it came to running the debugger.
+The Lazarus installation is preferred to the simpler fpc installation because using fpc triggers an error when the debugger is used.
 
 ### The Lazarus IDE
 #### Configuration
