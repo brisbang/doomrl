@@ -58,10 +58,12 @@ v5.1 is compulsory. DoomRL references the dll by name, and the dynamic headers a
 6. Install the Native Debug extension (from WebFreak)
 7. Manage (the cog)/Settings/User/Extensions/OmniPascal configuration
 * Default Development Environment: FreePascal
-* Free Pascal Source Path: %lazarus%\fpc\3.2.2\bin\x86_64-win64
+* Free Pascal Source Path: %lazarus%\fpc\3.2.2
 * Lazbuild path: %lazarus%
 8. Open Under drl, open .vscode/settings.json and update the folders to your locations
 9. In the status bar you'll see "OmniPascal: Select project". Click and choose drl.lpi (appears to improve the linking experience, although you'll need to do this each time you load the workspace)
+
+*Replacing the above Lazarus installs with fpc installs was not successful when it came to debugging.*
 
 #### Build
 1. Terminal/Run Task/Build makewad.exe (debug)
